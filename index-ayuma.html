@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AYUMA — Where the desert meets the sea</title>
+<meta name="description" content="AYUMA — premium botanical skincare, rooted in Baja California. Where the desert meets the sea. Coming soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F5F0E6;
+    --sand:#EADFCB;
+    --terra:#BE7150;
+    --sage:#9BA68C;
+    --sea:#6E9CAB;
+    --pacific:#2E5A66;
+    --pacific-deep:#244852;
+    --ink:#2C322E;
+    --ink-soft:#5C6259;
+    --bone-dim:rgba(245,240,230,0.62);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html,body{height:100%;}
+
+  body{
+    font-family:'Jost',sans-serif;
+    color:var(--ink);
+    background:var(--bone);
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+
+  /* ---- The horizon: desert above, sea below ---- */
+  .scene{
+    position:fixed;
+    inset:0;
+    background:
+      linear-gradient(
+        to bottom,
+        var(--bone) 0%,
+        var(--bone) 30%,
+        #F0E7D6 48%,
+        #EFE6D2 58%,
+        var(--sea) 64%,
+        var(--pacific) 84%,
+        var(--pacific-deep) 100%
+      );
+  }
+  /* luminous horizon line where warm meets cool */
+  .scene::before{
+    content:"";
+    position:absolute;
+    left:0;right:0;
+    top:62%;
+    height:1px;
+    background:linear-gradient(to right,
+      transparent 0%,
+      rgba(255,250,240,0.15) 18%,
+      rgba(255,250,240,0.85) 50%,
+      rgba(255,250,240,0.15) 82%,
+      transparent 100%);
+    box-shadow:0 0 28px 6px rgba(255,247,230,0.30);
+    animation:horizon 11s ease-in-out infinite;
+  }
+  /* soft sun haze sitting on the horizon */
+  .scene::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:62%;
+    width:min(70vw,640px);
+    height:min(70vw,640px);
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle,
+      rgba(255,243,222,0.55) 0%,
+      rgba(245,225,200,0.18) 38%,
+      transparent 64%);
+    pointer-events:none;
+    animation:haze 11s ease-in-out infinite;
+  }
+  @keyframes horizon{
+    0%,100%{opacity:0.85;}
+    50%{opacity:1;}
+  }
+  @keyframes haze{
+    0%,100%{opacity:0.85;transform:translate(-50%,-50%) scale(1);}
+    50%{opacity:1;transform:translate(-50%,-51%) scale(1.04);}
+  }
+
+  /* ---- Layout ---- */
+  .stage{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:grid;
+    grid-template-rows:1fr auto 1fr;
+    align-items:center;
+    justify-items:center;
+    text-align:center;
+    padding:clamp(1.5rem,5vh,3rem) 1.5rem;
+  }
+
+  /* upper zone — desert / warm / ink text */
+  .crown{
+    align-self:end;
+    padding-bottom:clamp(1.2rem,4vh,2.4rem);
+  }
+  .eyebrow{
+    font-size:clamp(0.6rem,1.4vw,0.72rem);
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--sage);
+    font-weight:500;
+    margin-bottom:clamp(1.4rem,4vh,2.2rem);
+  }
+  .wordmark{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size:clamp(3.6rem,15vw,10.5rem);
+    line-height:0.9;
+    letter-spacing:0.2em;
+    text-indent:0.2em; /* optical balance for tracking */
+    color:var(--ink);
+  }
+  .pronounce{
+    margin-top:clamp(1rem,3vh,1.6rem);
+    font-size:clamp(0.62rem,1.5vw,0.78rem);
+    letter-spacing:0.46em;
+    text-indent:0.46em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:400;
+  }
+
+  /* center band — the horizon — the tagline rests here */
+  .tagline-wrap{
+    z-index:3;
+  }
+  .tagline{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.15rem,3.4vw,1.85rem);
+    letter-spacing:0.04em;
+    color:var(--ink);
+  }
+  .tagline-es{
+    margin-top:0.55rem;
+    font-family:'Jost',sans-serif;
+    font-size:clamp(0.58rem,1.4vw,0.72rem);
+    letter-spacing:0.26em;
+    text-indent:0.26em;
+    text-transform:uppercase;
+    color:rgba(44,50,46,0.55);
+    font-weight:400;
+  }
+
+  /* lower zone — sea / cool / light text */
+  .tide{
+    align-self:start;
+    padding-top:clamp(1.4rem,5vh,2.8rem);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:clamp(1.1rem,3vh,1.7rem);
+    width:100%;
+    max-width:430px;
+  }
+  .status{
+    font-size:clamp(0.62rem,1.5vw,0.74rem);
+    letter-spacing:0.4em;
+    text-indent:0.4em;
+    text-transform:uppercase;
+    color:var(--bone);
+    font-weight:400;
+  }
+
+  form{
+    display:flex;
+    width:100%;
+    border-bottom:1px solid rgba(245,240,230,0.45);
+    transition:border-color 0.4s ease;
+  }
+  form:focus-within{border-color:rgba(245,240,230,0.95);}
+  form input{
+    flex:1;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:var(--bone);
+    font-family:'Jost',sans-serif;
+    font-size:0.84rem;
+    letter-spacing:0.08em;
+    padding:0.7rem 0.2rem;
+  }
+  form input::placeholder{
+    color:rgba(245,240,230,0.55);
+    letter-spacing:0.12em;
+  }
+  form button{
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    color:var(--bone);
+    font-family:'Jost',sans-serif;
+    font-size:0.64rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    padding:0 0.4rem 0 1rem;
+    white-space:nowrap;
+    transition:opacity 0.3s ease;
+  }
+  form button:hover{opacity:0.65;}
+
+  .confirm{
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--bone);
+    opacity:0;
+    height:0;
+    transition:opacity 0.5s ease;
+  }
+  .confirm.show{opacity:0.9;height:auto;}
+
+  .contact{
+    font-size:clamp(0.58rem,1.4vw,0.68rem);
+    letter-spacing:0.24em;
+    text-indent:0.24em;
+    text-transform:uppercase;
+    color:var(--bone-dim);
+  }
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(245,240,230,0.3);padding-bottom:1px;transition:color 0.3s ease;}
+  .contact a:hover{color:var(--bone);}
+
+  /* focus visibility */
+  a:focus-visible,button:focus-visible,input:focus-visible{
+    outline:2px solid rgba(255,247,230,0.9);
+    outline-offset:3px;
+  }
+
+  @media (max-height:620px){
+    body{overflow-y:auto;}
+    .stage{height:auto;min-height:100%;grid-template-rows:auto auto auto;gap:2.2rem;padding-top:3rem;padding-bottom:3rem;}
+    .crown,.tide{align-self:center;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .scene::before,.scene::after{animation:none;}
+  }
+</style>
+</head>
+<body>
+  <div class="scene" aria-hidden="true"></div>
+
+  <main class="stage">
+    <header class="crown">
+      <p class="eyebrow">Baja California · Est. 2026</p>
+      <h1 class="wordmark">Ayuma</h1>
+      <p class="pronounce">ah · yoo · mah</p>
+    </header>
+
+    <div class="tagline-wrap">
+      <p class="tagline">Where the desert meets the sea</p>
+      <p class="tagline-es">Donde el desierto se encuentra con el mar</p>
+    </div>
+
+    <section class="tide">
+      <p class="status">Arriving soon</p>
+    </section>
+  </main>
+</body>
+</html>
